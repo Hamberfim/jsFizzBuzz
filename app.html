@@ -49,9 +49,49 @@
 
     <!-- Main Section -->
     <main class="flex-shrink-0">
-        <div class="container">
-
+        <div class="container mt-4">
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col border-end border-1 col-lg-4">
+                    <h4 class="display-6 fw-bold mb-1 mt-3 mt-md-auto"><span
+                            class="hundredTitle text-nowrap">One-Hundred</span>:<br><span class="text-nowrap">A Coding
+                            Project</span></h4>
+                    <h5 class="lead">A javascript coding exercise. Using loops and if statments, design a program that displays one to one-hundred with
+                        multiples of '3' displaying <span class="fw-bold">"Fizz"</span>, multiples of '5' displaying <span class="fw-bold">"Buzz"</span> and mutiples of both
+                        displaying <span class="fw-bold">"FizzBuzz"</span>. Finally, multiples of neither indicated by "Not divisible by 3 or 5".</h5>
+                    <h4 class="mt-3 border-bottom border-1 border-dark">Instructions</h4>
+                    <p>Enter a Starting value (e.g., 1) and an Ending value (e.g., 100). Press the "Run Code" button and
+                        the javascript code will generate the values.</p>
+                </div>
+                <div class="col col-lg-8">
+                    <div class="mt-3">
+                        <h5>Enter Values:</h5>
+                        <form class="row gy-2 gx-3">
+                            <div class="col">
+                                <input type="number" id="startValue" class="form-control" placeholder="Start Value"
+                                    value=1 aria-label="Start Value">
+                            </div>
+                            <div class="col">
+                                <input type="number" id="endValue" class="form-control" placeholder="End Value"
+                                    value=100 aria-label="End Value">
+                            </div>
+                            <div class="col-12 d-flex justify-content-md-end">
+                                <button type="button" id="btnSubmit" class="btn btn-dark btn-lg">Run Code</button>
+                            </div>
+                            <br>
+                        </form>
+                        <h4 class="mt-4 border-bottom border-1 border-dark">Results:</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <tbody id="results">
+                                    <!-- Results Go Here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <br>
     </main>
 
     <!-- Footer Section -->
@@ -91,6 +131,9 @@
     </script>
     <!-- My JS -->
     <script src="js/site.js"></script>
+    <script>
+        document.getElementById('btnSubmit').addEventListener("click", getValues);
+    </script>
 </body>
 
 </html>

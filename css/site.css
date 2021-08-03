@@ -98,6 +98,23 @@ main>.container {
     width: 100%;
 }
 
+.Fizz {
+    font-weight: bold;
+    font-size: large;
+    color: var(--secondary-color);
+}
+
+.Buzz {
+    font-weight: bold;
+    font-size: large;
+    color: var(--primary-color);
+}
+
+.odd {
+    font-weight: normal;
+    color: #9c9c9c;
+}
+
 /* Prism CSS for Pre/Code tags */
 
 code[class*="language-"], pre[class*="language-"] {

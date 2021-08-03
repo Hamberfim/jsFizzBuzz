@@ -41,7 +41,8 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/Hamberfim/jsFizzBuzz">Project Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/Hamberfim/jsFizzBuzz">Project Git
+                            Repo</a>
                     </li>
                 </ul>
             </div>
@@ -57,18 +58,132 @@
                     <!-- Javascript Display -->
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // call hello World to test Prism Code Display
-                            function helloWorld() {
-                                alert("Test - Hello World!");
+                            "use strict";
+
+                            // Start or Controll function - get needed values
+                            function getValues() {
+                                let numbers;
+
+                                // get unique input values from the page
+                                let startValue = document.getElementById('startValue').value;
+                                let endValue = document.getElementById('endValue').value;
+
+                                // Use the "parseInt()" function to cast/convert from string input to integers    
+                                startValue = parseInt(startValue);
+                                endValue = parseInt(endValue);
+
+                                // validate - check if above parsed input are integers
+                                if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                    // if true call generateNumbers() - generate the numbers return them in an array
+                                    numbers = generateNumbers(startValue, endValue);
+
+                                } else {
+                                    alert("You must enter whole integers.");
+
+                                }
+
+                                // Call the display function with "numbers" variable to display results on the page 
+                                displayNumbers(numbers);
+
+
+                            }
+
+                            //Logic function - Generate numbers based on the start and endvalue
+                            function generateNumbers(sValue, eValue) {
+                                // Declare an array variable called numbers and set it equal to []
+                                let numbers = [];
+
+
+                                // loop over the sValue and eValue from start to end.
+                                for (let i = sValue; i <= eValue; i++) {
+                                    // add each number to the "numbers" array
+                                    numbers.push(i);
+
+                                }
+
+                                // Return the "numbers" array
+                                return numbers;
+
+                            }
+
+                            // View/Display Function - display the results (numbers) to the screen
+                            function displayNumbers(numbers) {
+                                // Delare a variable called "className" and set it equal to 'even' for use with displaying even numbers
+                                let className = 'even';
+
+                                //Decalre a variable called "templateRows" and set it equal to ''
+                                let templateRows = "";
+
+                                // loop through the numbers array- allow loop to run up to numbers.length
+
+                                for (let i = 0; i < numbers.length; i++) {
+                                    // declare "number" variable and set it equal to numbers[index]
+                                    let number = numbers[i];
+
+                                    // use "if-else-statement" to test each number against the zero modulus(%). (ie. number % 2 == 0)
+                                    if ((number % 3 === 0) && (number % 5 === 0)) {
+                                        templateRows += `&lt;tr>&lt;td>${number} is divisible by 3 and 5, &lt;span class="Fizz">FIZZ&lt;/span>&lt;span class="Buzz">BUZZ!&lt;/span>&lt;/td>&lt;/tr>`;
+                                    } else if (number % 3 === 0) {
+                                        className = 'Fizz';
+                                        templateRows += `&lt;tr>&lt;td>${number} is divisible by 3, &lt;span class="${className}">FIZZ!&lt;/span>&lt;/td>&lt;/tr>`;
+                                    } else if (number % 5 === 0) {
+                                        className = 'Buzz';
+                                        templateRows += `&lt;tr>&lt;td>${number} is divisible by 5, &lt;span class="${className}">BUZZ!&lt;/span>&lt;/td>&lt;/tr>`;
+                                    } else {
+                                        className = 'odd';
+                                        templateRows += `&lt;tr>&lt;td class="${className}">${number} is Not divisible by 3 or 5.&lt;/td>&lt;/tr>`;
+
+                                }
+
+                                // HTML Markup - set the "results" element and it's innerHTML to the concatenated "templateRows"
+                                document.getElementById('results').innerHTML = templateRows;
+                                
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col-md-4">
                     <!-- Code Description -->
-                    <p>The code is structure in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>The Hello World function is call to display an alert with a message containing<br>'Test - Hello World!'</p>
+                    <h4 class="hundredTitle">One-Hundred</h4>
+                    <p>Using HTML, custom CSS, Bootstrap and Javascript we can design a responsive application that can
+                        take user input (starting value and ending value), generate and display a count of the resulting
+                        range of numbers and denote the even numbers in <span class="fw-bold">bold</span>.</p>
+                    <h5 class="fw-bold">getValues() function:</h5>
+                    <p>Here we use javascript to "Get" the values from the HTML file user input fields by using
+                        <span class="fw-bold">document.getElementById</span>
+                        to locate the html tags with id's of startValue and endValue</p>
+                    <h5 class="fw-bold">Parse our input:</h5>
+                    <p>Here we use the built in function <span class="fw-bold">parseInt()</span> to convert the input
+                        values for startValue and endValue, which are strings, to integers</p>
+                    <h5 class="fw-bold">Validate input:</h5>
+                    <p>Using an if-statement we want to validate that the parsed input are actually integers since <span
+                            class="fw-bold">parseInt()</span> will convert a non-number string to <span
+                            class="fw-bold">NaN</span> (<em>meaing <span class="fw-bold">N</span>ot <span
+                                class="fw-bold">a</span>
+                            <span class="fw-bold">N</span>umber</em>). If if both values are integers, we call a
+                        function that will generate an
+                        array of integers based on the range of startValue and endValue input. If not, we display an
+                        alert box message informing the user to input integers.</p>
+                    <h5 class="fw-bold">generateNumbers() function:</h5>
+                    <p>Both integers are then pass to the <span class="fw-bold">generateNumbers(sValue, eValue)</span>
+                        function that will
+                        loop from the start to end range populating the empty <span class="fw-bold">numbers = [ ]</span>
+                        array and then
+                        return that array.</p>
+                    <h5 class="fw-bold">displayNumbers() function:</h5>
+                    <p>After the populated array is returned the <span class="fw-bold">displayNumbers(numbers)</span>
+                        function is called. Looping
+                        through the array with an if-statement to check each number to see if it is a multiple of '3'
+                        or/and
+                        '5' against a zero modulus result. Each integer is then concatenated and asigned to the template
+                        literal HTML markup variable called
+                        <span class="fw-bold">templateRows</span> with it's set <span class="fw-bold">className</span>
+                        of 'Fizz', 'Buzz' or it's combination. Finally, the completed <span
+                            class="fw-bold">templateRows</span>
+                        results are set in the
+                        HTML page via a tag with the element id of 'results' using <span
+                            class="fw-bold">getElementbyId</span> and it's <span class="fw-bold">innerHTML</span>
+                        property.</p>
                 </div>
             </div>
         </div>

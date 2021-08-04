@@ -72,7 +72,7 @@ function displayNumbers(numbers) {
 
         }
 
-    } 
+    }
 
     // HTML page Markup - set the "results" element/innerHTML to the concatenated "templateRows"
     document.getElementById('results').innerHTML = templateRows;

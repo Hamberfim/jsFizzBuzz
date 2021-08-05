@@ -46,35 +46,63 @@ function generateNumbers(sValue, eValue) {
 
 //View/Display Function - display the results (numbers) to the screen
 function displayNumbers(numbers) {
-    // Delare a variable called "className" and set it equal to 'even' for use with displaying even numbers
-    let className = 'odd';
+    // array to hold fizz, buzz, fizzbuzz or the number
+    let fbArray = [];
 
-    //Decalre a variable called "templateRows" and set it equal to ''
-    let templateRows = "";
-
-    // loop through the numbers array- allow loop to run up to numbers.length
+    // loop through the numbers array
     for (let i = 0; i < numbers.length; i++) {
         // declare "number" variable and set it equal to numbers[index]
         let number = numbers[i];
 
         // use "if-else-statement" to test each number against the zero modulus(%)
-        if ((number % 3 === 0) && (number % 5 === 0)) {
-            templateRows += `<tr><td>${number} is divisible by 3 and 5, <span class="Fizz">FIZZ</span><span class="Buzz">BUZZ!</span></td></tr>`;
-        } else if (number % 3 === 0) {
-            className = 'Fizz';
-            templateRows += `<tr><td>${number} is divisible by 3, <span class="${className}">FIZZ!</span></td></tr>`;
-        } else if (number % 5 === 0) {
-            className = 'Buzz';
-            templateRows += `<tr><td>${number} is divisible by 5, <span class="${className}">BUZZ!</span></td></tr>`;
+        if ((number % 3 == 0) && (number % 5 == 0)) {
+            fbArray.push('FizzBuzz');
+        } else if (number % 3 == 0) {
+            fbArray.push('Fizz');
+        } else if (number % 5 == 0) {
+            fbArray.push('Buzz');
         } else {
-            className = 'odd';
-            templateRows += `<tr><td class="${className}">${number} is Not divisible by 3 or 5.</td></tr>`;
-
+            // push the number to the arry
+            fbArray.push(number);
         }
 
     }
 
-    // HTML page Markup - set the "results" element/innerHTML to the concatenated "templateRows"
-    document.getElementById('results').innerHTML = templateRows;
+    // get the tbody element from the page by it's ID
+    let tableBody = document.getElementById('results');
+
+    // get the html template the defines the table row and the table data structure
+    let rowTemplate = document.getElementById('rowTemplate');
+
+    // make sure the html table is already clear
+    tableBody.innerHTML = "";
+
+    // loop thrugh fbArray in sets of five
+    for (let j = 0; j <= fbArray.length -1; j += 5) {
+
+        // get a copy of the template as document fragment to populate content in the page
+        let tableRow = document.importNode(rowTemplate.content, true);
+
+        // get just the template <td> and add them to an array
+        let rowCols = tableRow.querySelectorAll('td');
+
+        rowCols[0].classList.add(fbArray[j]);  // add 'Fizz', 'Buzz' or "FizzBuzz" as a css class
+        rowCols[0].textContent = fbArray[j];
+
+        rowCols[1].classList.add(fbArray[j + 1]);
+        rowCols[1].textContent = fbArray[j + 1];
+
+        rowCols[2].classList.add(fbArray[j + 2]);
+        rowCols[2].textContent = fbArray[j + 2];
+
+        rowCols[3].classList.add(fbArray[j + 3]);
+        rowCols[3].textContent = fbArray[j + 3];
+
+        rowCols[4].classList.add(fbArray[j + 4]);
+        rowCols[4].textContent = fbArray[j + 4];
+
+        tableBody.appendChild(tableRow);
+
+    }
 
 }
